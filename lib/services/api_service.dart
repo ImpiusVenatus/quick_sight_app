@@ -10,11 +10,7 @@ class ApiService {
 
   Future<String> analyzeImage(File imageFile) async {
     try {
-      // Read the image as raw bytes
       List<int> imageBytes = await imageFile.readAsBytes();
-
-      // Debug: Print image size
-      print("Image size: ${imageBytes.length} bytes");
 
       var response = await http.post(
         Uri.parse(endpoint),
@@ -22,23 +18,14 @@ class ApiService {
           "Authorization": "Bearer $apiKey",
           "Content-Type": "application/octet-stream"
         },
-        body: imageBytes, // Send raw image data
+        body: imageBytes,
       );
-
-      // Debug: Print response status code
-      print("Response Status Code: ${response.statusCode}");
-
-      // Debug: Print response body
-      print("Response Body: ${response.body}");
 
       if (response.statusCode == 200) {
         var jsonData = jsonDecode(response.body);
 
-        // Debug: Print full JSON response
-        print("JSON Response: $jsonData");
-
         if (jsonData is List && jsonData.isNotEmpty) {
-          return jsonData[0]["generated_text"]; // Get image description
+          return jsonData[0]["generated_text"];
         }
         return "No description available";
       } else {
