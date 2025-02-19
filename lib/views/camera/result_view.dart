@@ -15,7 +15,6 @@ class ResultView extends StatefulWidget {
 
 class _ResultViewState extends State<ResultView> {
   final FlutterTts _flutterTts = FlutterTts();
-  int _tapCount = 0;
   bool _isWaitingForSecondTap = false;
 
   @override

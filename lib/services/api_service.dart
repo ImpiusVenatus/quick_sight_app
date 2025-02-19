@@ -4,7 +4,7 @@ import 'package:http/http.dart' as http;
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class ApiService {
-  final String? apiKey = dotenv.env['API_KEY'];
+  late final String apiKey = dotenv.env['API_KEY']!;
   final String endpoint =
       "https://api-inference.huggingface.co/models/Salesforce/blip-image-captioning-base";
 
